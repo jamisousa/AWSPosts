@@ -19,7 +19,7 @@ export default function Home() {
 
   return (
       <div>
-        <h1 className='text-pink-400 text-3xl font-bold tracking-wide mt-6 mb-2'>My posts</h1>
+        <h1 className='text-pink-400 text-3xl font-bold tracking-wide mt-6 mb-2'>AWSPosts</h1>
         <div className='py-2'></div>
         {
         posts.map((post, index)=>(
