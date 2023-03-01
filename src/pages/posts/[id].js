@@ -22,14 +22,38 @@ export default function Post({post}){
     const [showMe, setShowMe] = useState(false);
     const {message} = comment;
     const [error, setError] = useState(null);
+    const [signedInUser, setSignedInUser] = useState(false);
 
-  function toggle(){
-    setShowMe(true);
-  }
+
+    function toggle() {
+      setShowMe(!showMe);
+    }
+  
 
     useEffect(()=>{
       updateCoverImage();
     },[]);
+
+      //check for a logged in user or not
+      useEffect(() => {
+        authListener();
+      }, []); //check when app is loaded/mounted too!
+
+
+      async function authListener() {
+        Hub.listen("auth", (data) => {
+          switch (data.payload.event) {
+            case "signIn":
+              return setSignedInUser(true);
+            case "signOut":
+              return setSignedInUser(false);
+          }
+        });
+        try {
+          await Auth.currentAuthenticatedUser();
+          setSignedInUser(true);
+        } catch (err) {}
+      }
 
     async function updateCoverImage(){
       if(post.coverImage){
@@ -78,8 +102,8 @@ export default function Post({post}){
               
             </div>
             <br></br>
-            <button type="button" className="rounded-lg py-2 px-8 font-semibold text-white bg-pink-600 mb-4" onClick={toggle}>Write a comment</button>
-            
+            { signedInUser && (<button type="button" className="rounded-lg py-2 px-8 font-semibold text-white bg-pink-600 mb-4" onClick={toggle}>Write a comment</button>)
+            }
             {error && <p className="text-red-500">Unable to add comment. {error.message}</p>}
 
             {
