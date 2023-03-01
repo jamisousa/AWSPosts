@@ -41,9 +41,25 @@ export default function Home() {
                 <img src={post.coverImage}
                 className="m-2 w-36 h-36 bg-contain bg-center rounded-full sm:mx-0 sm:shrink-0" />
               )}
-              <div className='m-2 cursor-pointer border=b border-gray-300 mt-8 pb4'>
+              <div className='m-2 cursor-pointer'>
                 <h2 className='text-xl font-semibold' key={index}>{post.title}</h2>
                 <p className="text-gray-500 mt-2 font-semibold">Author: {post.username}</p>
+                {post.comments.items.length > 0 &&
+                post.comments.items.map((comment, index) => (
+                  <div
+                    key={index}
+                    className='py-8 px-8 max-w-xl mx-auto bg-white rounded-xl 
+                    shadow-lg space-y-2 sm:py-1 sm:flex 
+                    my-6
+                    mx-12
+                    sm:items-center sm:space-y-0 sm:space-x-6 mb-2'
+                  >
+                    <div>
+                      <p className='text-gray-500 mt-2'>{comment.message}</p>
+                      <p className='text-gray-400 mt-1'>{comment.createdBy}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </Link>
