@@ -21,6 +21,7 @@ export default function Post({post}){
     const [comment, setComment] = useState(initialState);
     const [showMe, setShowMe] = useState(false);
     const {message} = comment;
+    const [error, setError] = useState(null);
 
   function toggle(){
     setShowMe(true);
@@ -53,8 +54,9 @@ export default function Post({post}){
         });
       } catch (error) {
         console.log(error);
+        setError(error);
       }
-      router.push("/my-posts");
+      // router.push("/my-posts");
     }
     
     return(
@@ -77,6 +79,9 @@ export default function Post({post}){
             </div>
             <br></br>
             <button type="button" className="rounded-lg py-2 px-8 font-semibold text-white bg-pink-600 mb-4" onClick={toggle}>Write a comment</button>
+            
+            {error && <p className="text-red-500">Unable to add comment. {error.message}</p>}
+
             {
           <div style={{ display: showMe ? "block" : "none" }}>
             <SimpleMdeEditor
