@@ -8,3 +8,8 @@
 <img src="https://img.shields.io/badge/-GraphQL-E10098?style=for-the-badge&logo=graphql&logoColor=white">
     <img src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white">
 </section>
+
+<br>
+
+#### Overview: 
+<img src="https://user-images.githubusercontent.com/71787801/222244274-1f302e2c-b669-43cc-98b9-44eff63590b3.mp4"/>
